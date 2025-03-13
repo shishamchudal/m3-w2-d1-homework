@@ -91,14 +91,24 @@ client
     //     client.close();
     //   });
 
-    var query = { state: "CA" };
+    // var query = { state: "AK" };
+    // dbo
+    // .collection("uscensus")
+    // .find(query)
+    // .toArray()
+    // .then((items) => {
+    //     console.log(`Successfully found ${items.length} documents.`);
+    //     console.log(items);
+    //     client.close();
+    // });
+    
+    var myquery = { state: "AK" };
+    var newvalues = { $set: { income: "38910", age: "46" } };
     dbo
       .collection("uscensus")
-      .find(query)
-      .toArray()
-      .then((items) => {
-        console.log(`Successfully found ${items.length} documents.`);
-        console.log(items);
+      .updateOne(myquery, newvalues)
+      .then(function () {
+        console.log("1 document updated");
         client.close();
       });
   })
