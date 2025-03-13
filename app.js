@@ -102,13 +102,26 @@ client
     //     client.close();
     // });
     
-    var myquery = { state: "AK" };
-    var newvalues = { $set: { income: "38910", age: "46" } };
+    // var myquery = { state: "AK" };
+    // var newvalues = { $set: { income: "38910", age: "46" } };
+    // dbo
+    //   .collection("uscensus")
+    //   .updateOne(myquery, newvalues)
+    //   .then(function () {
+    //     console.log("1 document updated");
+    //     client.close();
+    //   });
+
+
+    var mysort = { state: 1 };
     dbo
       .collection("uscensus")
-      .updateOne(myquery, newvalues)
-      .then(function () {
-        console.log("1 document updated");
+      .find()
+      .sort(mysort)
+      .toArray()
+      .then((items) => {
+        console.log(`Successfully sorted ${items. length} documents.`);
+        console.log(items);
         client.close();
       });
   })
