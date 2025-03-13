@@ -66,28 +66,39 @@ client
     //     client.close();
     //   });
 
-    var stats = [
-      {
-        city: "Pacoima",
-        zip: "91331",
-        state: "CA",
-        income: "60360",
-        age: "33",
-      },
-      {
-        city: "Ketchikan",
-        zip: "99950",
-        state: "AK",
-        income: "00000",
-        age: "00",
-      },
-    ];
+    // var stats = [
+    //   {
+    //     city: "Pacoima",
+    //     zip: "91331",
+    //     state: "CA",
+    //     income: "60360",
+    //     age: "33",
+    //   },
+    //   {
+    //     city: "Ketchikan",
+    //     zip: "99950",
+    //     state: "AK",
+    //     income: "00000",
+    //     age: "00",
+    //   },
+    // ];
 
+    // dbo
+    //   .collection("uscensus")
+    //   .insertMany(stats)
+    //   .then(function (res) {
+    //     console.log("Number of documents inserted:" + res.insertedCount);
+    //     client.close();
+    //   });
+
+    var query = { city: "Corona" };
     dbo
       .collection("uscensus")
-      .insertMany(stats)
-      .then(function (res) {
-        console.log("Number of documents inserted:" + res.insertedCount);
+      .find(query)
+      .toArray()
+      .then((items) => {
+        console.log(`Successfully found ${items.length} documents.`);
+        console.log(items);
         client.close();
       });
   })
