@@ -8,11 +8,11 @@ client
   .then(() => {
     var dbo = client.db("statsdb");
 
-    dbo.createCollection("uscensus").then(function () {
-        //   console.log("Collection created");
-        //   //Close the database connection
-        //   client.close();
-        // });
+    // dbo.createCollection("uscensus").then(function () {
+    //   console.log("Collection created");
+    //   //Close the database connection
+    //   client.close();
+    // });
     var stats = [
       {
         city: "San Juan",
@@ -57,5 +57,13 @@ client
         age: "35",
       },
     ];
+
+    dbo
+      .collection("uscensus")
+      .insertMany(stats)
+      .then(function (res) {
+        console.log("Number of documents inserted:" + res.insertedCount);
+        client.close();
+      });
   })
   .catch((error) => console.log("Failed to connect", error));
