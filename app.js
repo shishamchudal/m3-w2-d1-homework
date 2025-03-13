@@ -113,7 +113,7 @@ client
     //   });
 
 
-    var mysort = { state: 1 };
+    var mysort = { state: -1 };
     dbo
       .collection("uscensus")
       .find()
