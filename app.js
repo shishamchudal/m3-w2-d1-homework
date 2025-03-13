@@ -91,7 +91,7 @@ client
     //     client.close();
     //   });
 
-    var query = { city: "Corona" };
+    var query = { state: "CA" };
     dbo
       .collection("uscensus")
       .find(query)
